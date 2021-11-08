@@ -23,9 +23,7 @@ Route::get('/', [ProductController::class, 'index']);
 Route::resource('products', ProductController::class);
 Route::resource('categories', CategoryController::class);
 
-Route::get('/search/', [SearchController::class, 'search'])->name('search');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/search/', [SearchController::class, 'search'])->name('search');
 Route::get('/logout', [SearchController::class, 'logout'])->name('logout');

@@ -42,6 +42,7 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $category = new Category();
+        $category->user_id = \Auth::user()->id;
         $category->name = $request->name;
         $category->save();
 
@@ -67,6 +68,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        if($categories->user_id != \Auth::user()->id){
+            return redirect('/')->withErrors('Вы не можете редактировать данную категорию !');
+        }
         return view('categories.create', compact('category'));
     }
 
@@ -80,6 +84,11 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category)
     {
         $params = $request->all();
+
+        if($categories->user_id != \Auth::user()->id){
+            return redirect('/')->withErrors('Вы не можете редактировать данную категорию !');
+        }
+
         $category->update($params);
 
         return redirect()->route('categories.index')->with('success', 'Категория успешно отредактировано!');
@@ -95,6 +104,10 @@ class CategoryController extends Controller
     {
        $category->delete($category);
 
-        return back()->with('success', 'Категория успешно удалена !');
+       if($categories->user_id != \Auth::user()->id){
+        return redirect('/')->withErrors('Вы не можете редактировать данную категорию !');
     }
+
+    return back()->with('success', 'Категория успешно удалена !');
+}
 }

@@ -17,19 +17,19 @@ class CategoryTableSeeder extends Seeder
      DB::table('categories')->insert([
         [
             'name' => 'Смартфоны',
-            'user_id' = rand(1,4),
+            'user_id' => rand(1,4),
         ],
         [
             'name' => 'Планшеты',
-            'user_id' = rand(1,4),
+            'user_id' => rand(1,4),
         ],
         [
             'name' => 'Телевизоры',
-            'user_id' = rand(1,4),
+            'user_id' => rand(1,4),
         ],
         [
             'name' => 'Бытовая Техника',
-            'user_id' = rand(1,4),
+            'user_id' => rand(1,4),
         ],
     ]);
  }
